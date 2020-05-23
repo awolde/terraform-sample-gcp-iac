@@ -71,7 +71,7 @@ resource "google_project_iam_member" "sql_viewer" {
 resource "google_compute_firewall" "http_allow" {
   name          = "allow-http"
   network       = google_compute_network.vpc_network.self_link
-  source_ranges = [google_compute_forwarding_rule.fr.ip_address, var.my_ip ]
+  source_ranges = [ var.my_ip ]
   target_tags   = ["allow-ssh-http"]
   allow {
     protocol = "tcp"
