@@ -11,7 +11,11 @@ For simplicity, SQL instance is running with public IP.
 
 ## Running
 Add your project id at the top of the `main.tf` file.
+Also your public ip in `my_ip` variable.
 
 Use a service account that has compute admin role.
 
-`terraform plan; terraform apply`
+`terraform init; terraform plan; terraform apply`
+
+## Testing
+`curl http://your_lb_ip/index.php`

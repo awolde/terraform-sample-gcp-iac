@@ -2,10 +2,13 @@ variable "project_id" {
   default = ""
 }
 
+variable "my_ip" {
+  default = ""
+}
+
 provider "google" {
   project = var.project_id
   region  = "us-central1"
-  zone    = "us-central1-c"
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -68,7 +71,7 @@ resource "google_project_iam_member" "sql_viewer" {
 resource "google_compute_firewall" "http_allow" {
   name          = "allow-http"
   network       = google_compute_network.vpc_network.self_link
-  source_ranges = [google_compute_forwarding_rule.fr.ip_address, "35.191.0.0/16", "130.211.0.0/22"]
+  source_ranges = [google_compute_forwarding_rule.fr.ip_address, var.my_ip ]
   target_tags   = ["allow-ssh-http"]
   allow {
     protocol = "tcp"
