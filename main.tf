@@ -1,14 +1,15 @@
 variable "project_id" {
-  default = ""
+  default = "dark-granite-278014"
 }
 
 variable "my_ip" {
-  default = ""
+  default = "24.12.67.56"
 }
 
 provider "google" {
   project = var.project_id
   region  = "us-central1"
+  zone    = "us-central1-a"
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -120,6 +121,12 @@ resource "google_storage_bucket_object" "db_dump" {
   bucket = google_storage_bucket.db_bucket.name
   name   = "employees.sql"
   source = "${path.module}/employees.sql"
+}
+
+resource "google_storage_bucket_object" "web_dump" {
+  bucket = google_storage_bucket.db_bucket.name
+  name   = "website.tgz"
+  source = "${path.module}/website.tgz"
 }
 
 resource "google_storage_bucket" "db_bucket" {

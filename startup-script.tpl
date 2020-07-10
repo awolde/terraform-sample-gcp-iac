@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 apt update && apt install php mysql-client php-mysql -y
 gsutil cp gs://${db_bucket}/employees.sql .
+gsutil cp gs://${db_bucket}/website.tgz .
+tar xfvz website.tgz -C /var/www/html/
 
 DB_HOST=""
 until [[ $DB_HOST != "" ]]

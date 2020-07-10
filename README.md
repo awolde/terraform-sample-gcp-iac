@@ -4,7 +4,7 @@ A sample IaC that deploys an app with three web nodes and a backend DB server.
 
 For simplicity, SQL instance is running with public IP. 
 
-**Do not do this is production!!**
+**Do not do this in production!!**
 
 ## Architecture
 ![picture](demo-app-arch.png)
